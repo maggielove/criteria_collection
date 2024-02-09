@@ -1,7 +1,14 @@
 import React from "react";
+import FilterBar from "./FilterBar";
+import JobCard from "./JobCard";
 
 const App = () => {
-   return <div>Hello, World!</div>;
+   return (
+     <>
+      <FilterBar />
+      <JobCard />
+     </>
+   );
 };
 
 export default App;
