@@ -5,9 +5,12 @@ const JobCard = () => {
 
   return (
     <div className="job-card">
-      <p className="company">Company</p>
-      <p className="title">Senior Software Engineer, Frontend</p>
-      <p className="posted">1 day ago</p>
+
+      <div className="job-details">
+        <p className="company">AdaMarie</p>
+        <p className="title">Senior Software Engineer, Frontend</p>
+        <p className="posted">1 day ago</p>
+      </div>
 
       <div className="badge-container">
         <div className="language">TypeScript</div>

@@ -3,7 +3,7 @@ import "../../styles/app.scss";
 import Filter from "./Filter";
 
 const FilterBar = () => {
-  const labels = ["EXPERIENCE", "LANGUAGES", "ROLE"];
+  const labels = ["Experience", "Languages", "Role"];
 
   return (
     <div className="filter-bar">

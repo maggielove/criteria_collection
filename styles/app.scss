@@ -3,11 +3,25 @@ $sans-serif: 'Helvetica Neue', Arial, sans-serif;
 
 // colors
 $near-black: #0d0d0d;
+$dark-gray: #737373;
+$off-white: #f2f2f2;
+$aquamarine: #00b3b3;
 
+// App-wide
 body {
   margin: 0;
 }
 
+p {
+  font-family: $sans-serif;
+  letter-spacing: 1px;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0 0 8px 0;
+  color: $near-black;
+}
+
+// Filter Bar
 .filter-bar {
   margin: 0 auto 12px auto;
   width: 100%;
@@ -29,26 +43,19 @@ body {
   }
 }
 
+// Filter
 .filter {
   width: 150px;
   height: 75px;
   border-radius: 4px;
   text-align: center;
 
-  p {
-    font-family: $sans-serif;
-    letter-spacing: 1px;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 700;
-    margin: 0 0 8px 0;
-    color: $near-black;
-  }
-
   select {
     width: 150px;
     height: 25px;
     letter-spacing: 0.5px;
+    border-radius: 15px;
+    padding-left: 5px;
   }
 
   &:not(:last-of-type) {
@@ -56,12 +63,51 @@ body {
   }
 }
 
+// Job Card
 .job-card {
+  display: flex;
   margin: 0 auto;
+  justify-content: space-around;
+  align-items: center;
   padding: 12px;
   width: 100%;
   max-width: 700px;
-  height: 150px;
+  height: 100px;
   border-radius: 10px;
   background-color: #f0f0f5;
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  // note: this could be a logo
+  .company {
+    margin-bottom: 4px;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .posted {
+    color: $dark-gray;
+  }
+}
+
+.badge-container {
+  width: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  row-gap: 12px;
+
+  div {
+    font-family: $sans-serif;
+    background-color: $aquamarine;
+    color: $off-white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-right: 8px;
+  }
 }
