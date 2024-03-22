@@ -3,51 +3,105 @@ import express from 'express'
 
 const prisma = new PrismaClient()
 
-// Load db data
+// Create db datasource
+async function createFilm() {
+  const filmAndCriteria = await prisma.film.create({
+    data: {
+      title: 'Dog Day Afternoon',
+      genre: {
+        create: { name: 'Drama' }
+      },
+      director: {
+        create: { name: 'Sidney Lumet' }
+      },
+      // decade: {
+      //   create: { name: '1970s' }
+      // },
+    }
+  });
+
+  const allFilms = await prisma.film.findMany()
+  console.log('All films: ')
+  console.dir(allFilms, { depth: null })
+}
+
+
+
 // async function main() {
-//   const newJob = await prisma.job.create({
-//     data: {
-//       company: 'AdaMarie',
-//       title: 'Frontend Developer',
-//       experienceLevel: 'Senior',
-//     },
-//   })
-//   console.log('Created new job: ', newJob)
-//
-//   const allJobs = await prisma.job.findMany()
-//   console.log('All jobs: ')
-//   console.dir(allJobs, { depth: null })
+  // const newFilm = await prisma.film.create({
+    // data: {
+    //   title: 'The Panic in Needle Park',
+    //   genre: 'Drama',
+    //   director: 'Jerry Schatzberg',
+    //   decade: '1970s'
+    // },
+    // data: {
+    //   title: 'Mississippi Masala',
+    //   genre: 'Romance',
+    //   director: 'Mira Nair',
+    //   decade: '1990s'
+    // },
+    // data: {
+    //   title: 'The Master',
+    //   genre: 'Drama',
+    //   director: 'Paul Thomas Anderson',
+    //   decade: '2010s'
+    // },
+    // data: {
+    //   title: 'Party Girl',
+    //   genre: 'Comedy',
+    //   director: 'Daisy Von Scherler Mayer',
+    //   decade: '1990s'
+    // },
+    // data: {
+    //   title: 'Tampopo',
+    //   genre: 'Ramen Western',
+    //   director: 'Juzo Itami',
+    //   decade: '1980s'
+    // },
+    // data: {
+    //   title: 'Two Lovers',
+    //   genre: 'Drama',
+    //   director: 'James Gray',
+    //   decade: '2000s'
+    // },
+    // data: {
+    //   title: 'Little Odessa',
+    //   genre: 'Drama',
+    //   director: 'James Gray',
+    //   decade: '1990s'
+    // },
+  // })
+  // console.log('Created new film: ', newFilm)
+  //
+  // const allFilms = await prisma.film.findMany()
+  // console.log('All films: ')
+  // console.dir(allFilms, { depth: null })
 // }
-//
+
 // main()
 //   .catch((e) => console.error(e))
 //   .finally(async () => await prisma.$disconnect())
 
+createFilm()
+  .catch((e) => console.error(e))
+  .finally(async () => await prisma.$disconnect())
+
+// const update
+
 
 const app = express()
 app.use(express.json())
-// const path = require("path");
-
-// display the job board
-// app.use(express.static("public"));
-// app.use(express.static("dist"));
-
-// const DIST_DIR = path.join(__dirname, "dist");
-// may need to move html file, or add ../
-// const HTML_FILE = path.join(DIST_DIR, "index.html");
-
-// app.get("/", (req, res) => {
-//    res.sendFile(HTML_FILE, function(err){
-//       if(err){
-//          res.status(500).send(err);
-//       }
-//    });
-// });
 
 // REST API routes
-app.get('/jobs', async (req, res) => {
-  const jobs = await prisma.job.findMany()
-  res.json(jobs)
+app.get('/films', async (req, res) => {
+  const films = await prisma.film.findMany()
+  res.json(films)
+})
+
+app.get('/genres', async(req, res) => {
+  const genres = await prisma.genre.findMany()
+  res.json(genres)
 })
 
 app.listen(3000, () =>

@@ -10,10 +10,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Job {
+model Film {
   id Int @default(autoincrement()) @id
-  company String
   title String
-  posted DateTime @default(now())
-  experienceLevel String
+  genre Genre? @relation(fields: [genreId], references: [id])
+  genreId Int?
+  director Director? @relation(fields: [directorId], references: [id])
+  directorId Int?
+  decade Decade? @relation(fields: [decadeId], references: [id])
+  decadeId Int?
+}
+
+model Genre {
+  id Int @default(autoincrement()) @id
+  name String @unique
+  films Film[]
+}
+
+model Director {
+  id Int @default(autoincrement()) @id
+  name String @unique
+  films Film[]
+}
+
+model Decade {
+  id Int @default(autoincrement()) @id
+  name String @unique
+  films Film[]
 }

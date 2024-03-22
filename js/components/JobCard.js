@@ -7,9 +7,9 @@ const JobCard = () => {
     <div className="job-card">
 
       <div className="job-details">
-        <p className="company">AdaMarie</p>
-        <p className="title">Senior Software Engineer, Frontend</p>
-        <p className="posted">1 day ago</p>
+        <p className="company">Mira Nair</p>
+        <p className="title">Mississippi Masala</p>
+        <p className="year">1991</p>
       </div>
 
       <div className="badge-container">
