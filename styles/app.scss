@@ -76,6 +76,10 @@ p {
   border-radius: 10px;
   background-color: #f0f0f5;
 
+  &:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
+
   p:last-of-type {
     margin-bottom: 0;
   }
@@ -97,6 +101,8 @@ p {
 
 .badge-container {
   width: 40%;
+  height: 100px;
+  background-color: #333333;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;

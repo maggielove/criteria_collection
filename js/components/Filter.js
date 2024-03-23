@@ -1,14 +1,15 @@
 import React from "react";
 
-const Filter = ({ label }) => {
+const Filter = ({ label, dropdownValues }) => {
 
   return (
     <div className="filter">
       <p>{label}</p>
       <select>
-        <option value="frontend">Frontend</option>
-        <option value="backend">Backend</option>
-        <option value="fullstack">Fullstack</option>
+        <option value="frontend">all</option>
+        {dropdownValues && dropdownValues.map(item =>
+          <option value="frontend">{item.name}</option>
+        )}
       </select>
     </div>
   );

@@ -141,7 +141,7 @@ app.get('/api/directors', async(req, res) => {
   res.json(genres)
 })
 
-app.get('/decades', async(req, res) => {
+app.get('/api/decades', async(req, res) => {
   const genres = await prisma.decade.findMany()
   res.json(genres)
 })
