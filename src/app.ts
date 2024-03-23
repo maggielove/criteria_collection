@@ -3,92 +3,124 @@ import express from 'express'
 
 const prisma = new PrismaClient()
 
+// TODO add seeds so a user isn't forced to use prisma studio to populate db
+// const films = [
+//     {
+//       title: 'The Panic in Needle Park',
+//       genreId: 1,
+//       director: {
+//         create: { name: 'Jerry Schatzberg' }
+//       },
+//       decade: {
+//         create: { name: '1970s' }
+//       },
+//     },
+//     {
+//       title: 'Mississippi Masala',
+//       genre: {
+//         create: { name: 'Romance' }
+//       },
+//       director: {
+//         create: { name: 'Mira Nair' }
+//       },
+//       decade: {
+//         create: { name: '1990s' }
+//       },
+//     },
+//     {
+//       title: 'The Master',
+//       genreId: 1,
+//       director: {
+//         create: { name: 'Paul Thomas Anderson' }
+//       },
+//       decade: {
+//         create: { name: '2010s' }
+//       },
+//     },
+//     {
+//       title: 'Party Girl',
+//       genre: {
+//         create: { name: 'Comedy' }
+//       },
+//       director: {
+//         create: { name: 'Daisy Von Scherler Mayer' }
+//       },
+//       decadeId: 2,
+//     },
+//     {
+//       title: 'Tampopo',
+//       genre: {
+//         create: { name: 'Ramen Western' }
+//       },
+//       director: {
+//         create: { name: 'Juzo Itami' }
+//       },
+//       decade: {
+//         create: { name: '1980s' }
+//       },
+//     },
+//     {
+//       title: 'Two Lovers',
+//       genreId: 1,
+//       director: {
+//         create: { name: 'James Gray' }
+//       },
+//       decade: {
+//         create: { name: '2000s' }
+//       },
+//     },
+//     {
+//       title: 'Boogie Nights',
+//       genre: {
+//         create: { name: 'Dramedy' }
+//       },
+//       directorId: 4,
+//       decadeId: 2,
+//     },
+// ]
+
 // Create db datasource
-async function createFilm() {
-  const filmAndCriteria = await prisma.film.create({
-    data: {
-      title: 'Dog Day Afternoon',
-      genre: {
-        create: { name: 'Drama' }
-      },
-      director: {
-        create: { name: 'Sidney Lumet' }
-      },
-      // decade: {
-      //   create: { name: '1970s' }
-      // },
-    }
-  });
-
-  const allFilms = await prisma.film.findMany()
-  console.log('All films: ')
-  console.dir(allFilms, { depth: null })
-}
-
-
-
-// async function main() {
-  // const newFilm = await prisma.film.create({
-    // data: {
-    //   title: 'The Panic in Needle Park',
-    //   genre: 'Drama',
-    //   director: 'Jerry Schatzberg',
-    //   decade: '1970s'
-    // },
-    // data: {
-    //   title: 'Mississippi Masala',
-    //   genre: 'Romance',
-    //   director: 'Mira Nair',
-    //   decade: '1990s'
-    // },
-    // data: {
-    //   title: 'The Master',
-    //   genre: 'Drama',
-    //   director: 'Paul Thomas Anderson',
-    //   decade: '2010s'
-    // },
-    // data: {
-    //   title: 'Party Girl',
-    //   genre: 'Comedy',
-    //   director: 'Daisy Von Scherler Mayer',
-    //   decade: '1990s'
-    // },
-    // data: {
-    //   title: 'Tampopo',
-    //   genre: 'Ramen Western',
-    //   director: 'Juzo Itami',
-    //   decade: '1980s'
-    // },
-    // data: {
-    //   title: 'Two Lovers',
-    //   genre: 'Drama',
-    //   director: 'James Gray',
-    //   decade: '2000s'
-    // },
-    // data: {
-    //   title: 'Little Odessa',
-    //   genre: 'Drama',
-    //   director: 'James Gray',
-    //   decade: '1990s'
-    // },
-  // })
-  // console.log('Created new film: ', newFilm)
-  //
-  // const allFilms = await prisma.film.findMany()
-  // console.log('All films: ')
-  // console.dir(allFilms, { depth: null })
+// async function addFilms() {
+//   for (let filmToAdd of films) {
+//     console.log(`film to add `, filmToAdd, `typeof: `, typeof filmToAdd);
+//
+//     await prisma.film.create({
+//       data: filmToAdd,
+//     })
+//   }
 // }
 
-// main()
+// addFilms()
 //   .catch((e) => console.error(e))
 //   .finally(async () => await prisma.$disconnect())
 
-createFilm()
-  .catch((e) => console.error(e))
-  .finally(async () => await prisma.$disconnect())
+// async function createFilm() {
+//   const filmAndCriteria = await prisma.film.create({
+//     data: {
+//       title: 'Dog Day Afternoon',
+//       genre: {
+//         create: { name: 'Drama' }
+//       },
+//       director: {
+//         create: { name: 'Sidney Lumet' }
+//       },
+//       // decade: {
+//       //   create: { name: '1970s' }
+//       // },
+//     }
+//   });
+//
+//   const allFilms = await prisma.film.findMany()
+//   console.log('All films: ')
+//   console.dir(allFilms, { depth: null })
+// }
 
-// const update
+  // createFilm()
+  //   .catch((e) => console.error(e))
+  //   .finally(async () => await prisma.$disconnect())
 
+
+// TODO add update function ? Use prisma studio?
 
 const app = express()
 app.use(express.json())
@@ -101,6 +133,16 @@ app.get('/films', async (req, res) => {
 
 app.get('/genres', async(req, res) => {
   const genres = await prisma.genre.findMany()
+  res.json(genres)
+})
+
+app.get('/directors', async(req, res) => {
+  const genres = await prisma.director.findMany()
+  res.json(genres)
+})
+
+app.get('/decades', async(req, res) => {
+  const genres = await prisma.decade.findMany()
   res.json(genres)
 })
 
