@@ -126,17 +126,17 @@ const app = express()
 app.use(express.json())
 
 // REST API routes
-app.get('/films', async (req, res) => {
+app.get('/api/films', async (req, res) => {
   const films = await prisma.film.findMany()
   res.json(films)
 })
 
-app.get('/genres', async(req, res) => {
+app.get('/api/genres', async(req, res) => {
   const genres = await prisma.genre.findMany()
   res.json(genres)
 })
 
-app.get('/directors', async(req, res) => {
+app.get('/api/directors', async(req, res) => {
   const genres = await prisma.director.findMany()
   res.json(genres)
 })
@@ -147,5 +147,5 @@ app.get('/decades', async(req, res) => {
 })
 
 app.listen(3000, () =>
-  console.log('REST API server ready at: http://localhost:3000'),
+  console.log('REST API server ready at: http://localhost:3000/api/'),
 )

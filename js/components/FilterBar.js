@@ -9,8 +9,8 @@ const FilterBar = () => {
     <div className="filter-bar">
       <h1>The Criteria Channel</h1>
       <div className ="dropdown-container">
-      {labels.map(label =>
-          <Filter label={label} />
+      {labels.map((label, i) =>
+          <Filter label={label} key={i} />
         )
       }
       </div>
