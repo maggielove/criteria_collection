@@ -1,19 +1,20 @@
 import React from "react";
 import "../../styles/app.scss";
 
-const JobCard = ({ title, director, decade }) => {
+const JobCard = ({ title, director, decade, image }) => {
 
   return (
     <div className="film-card">
+      <div className="image-container">
+        <img src={image} />
+      </div>
 
-      <div className="job-details">
-        <p className="company">Director: {director}</p>
+      <div className="film-details">
+        <p className="director">{director}</p>
         <p className="title">{title}</p>
-        <p className="year">Decade: {decade}</p>
       </div>
 
-      <div className="badge-container">
-      </div>
+      <p className="year">{decade}</p>
     </div>
   );
 }

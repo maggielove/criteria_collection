@@ -42,8 +42,11 @@ const App = () => {
       decades={decades ? decades : []} updateFilms={updateFilms} />
       {films &&
         films.map((film, index) => <FilmCard director={film.director.name}
-          title={film.title} decade={film.decade.name} key={index}
+          title={film.title} image={film.image} decade={film.decade.name} key={index}
           />)
+      }
+      {(films.length === 0) &&
+        <p className="no-results">No results found</p>
       }
      </>
    );

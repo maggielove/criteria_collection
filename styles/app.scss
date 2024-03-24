@@ -1,8 +1,12 @@
 // fonts
 $sans-serif: 'Helvetica Neue', Arial, sans-serif;
+$serif: 'Georgia', serif;
 
 // colors
 $near-black: #0d0d0d;
+$warm-yellow: #ffcc00;
+$film-card-gray: #404040;
+$year-tag-gray: #595959;
 $dark-gray: #737373;
 $off-white: #f2f2f2;
 $aquamarine: #00b3b3;
@@ -10,6 +14,7 @@ $aquamarine: #00b3b3;
 // App-wide
 body {
   margin: 0;
+  background-color: $near-black;
 }
 
 p {
@@ -19,6 +24,12 @@ p {
   line-height: 20px;
   margin: 0 0 8px 0;
   color: $near-black;
+}
+
+.no-results {
+  color: $off-white;
+  margin: 64px auto 0px auto;
+  text-align: center;
 }
 
 // Filter Bar
@@ -32,8 +43,10 @@ p {
   h1 {
     margin: 0;
     font-family: $sans-serif;
+    font-weight: 400;
     text-align: center;
-    color: $near-black;
+    color: $off-white;
+    text-transform: uppercase;
     padding-bottom: 12px;
   }
 
@@ -52,6 +65,7 @@ p {
 
   .label {
     text-transform: capitalize;
+    color: $off-white;
   }
 
   select {
@@ -71,14 +85,13 @@ p {
 .film-card {
   display: flex;
   margin: 0 auto;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 12px;
+  padding: 0;
   width: 100%;
-  max-width: 700px;
-  height: 100px;
-  border-radius: 10px;
-  background-color: #f0f0f5;
+  max-width: 400px;
+  height: 200px;
+  background-color: $film-card-gray;
 
   &:not(:last-of-type) {
     margin-bottom: 16px;
@@ -88,29 +101,37 @@ p {
     margin-bottom: 0;
   }
 
-  // note: this could be a logo
-  .company {
+  .director {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: $warm-yellow;
     margin-bottom: 4px;
   }
 
   .title {
+    font-family: $serif;
+    color: #f2f2f2;
     font-size: 18px;
     font-weight: 700;
   }
 
   .year {
-    color: $dark-gray;
+    color: $off-white;
+    transform: rotate(-270deg);
+    background-color: $year-tag-gray;
+    padding: 8px;
   }
 }
 
-.badge-container {
-  width: 40%;
-  height: 100px;
+.image-container {
+  width: 200px;
+  height: 200px;
   background-color: #333333;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   row-gap: 12px;
+  margin-right: 12px;
 
   div {
     font-family: $sans-serif;
@@ -119,5 +140,11 @@ p {
     padding: 8px;
     border-radius: 8px;
     margin-right: 8px;
+  }
+
+  img {
+    max-width: 200px;
+    height: 200px;
+    object-fit: cover;
   }
 }

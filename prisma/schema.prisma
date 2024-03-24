@@ -19,6 +19,7 @@ model Film {
   directorId Int?
   decade Decade? @relation(fields: [decadeId], references: [id])
   decadeId Int?
+  image String?
 }
 
 model Genre {

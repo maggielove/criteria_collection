@@ -135,8 +135,6 @@ app.get('/api/films', async (req, res) => {
     },
   })
 
-  console.log('films ', films);
-
   res.json(films)
 })
 
@@ -187,8 +185,6 @@ app.get(`/api/`, async (req, res) => {
         decade: true,
       },
     });
-
-    console.log(`filtered results! `, filteredFilms);
 
     res.json(filteredFilms);
   }
