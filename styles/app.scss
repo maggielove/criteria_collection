@@ -50,6 +50,10 @@ p {
   border-radius: 4px;
   text-align: center;
 
+  .label {
+    text-transform: capitalize;
+  }
+
   select {
     width: 150px;
     height: 25px;
@@ -63,8 +67,8 @@ p {
   }
 }
 
-// Job Card
-.job-card {
+// Film Card
+.film-card {
   display: flex;
   margin: 0 auto;
   justify-content: space-around;

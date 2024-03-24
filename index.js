@@ -8,12 +8,12 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 
 // Todo play around with routing
-// const appRouting = (
-//   <Router>
-//     <Routes>
-//       <Route exact path="/" component={App} />
-//     </Routes>
-//   </Router>
-// );
+const appRouting = (
+  <Router>
+    <Routes>
+      <Route exact path="/" element={<App />} />
+    </Routes>
+  </Router>
+);
 
-root.render(<App />);
+root.render(appRouting);

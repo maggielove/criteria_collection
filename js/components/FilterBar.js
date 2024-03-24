@@ -3,11 +3,11 @@ import "../../styles/app.scss";
 import Filter from "./Filter";
 
 const FilterBar = ({ genres, decades, directors }) => {
-  const labels = ["Genre", "Decade", "Director"];
+  const labels = ["genre", "decade", "director"];
   const dropdownTypes = {
-    "Genre": genres,
-    "Decade": decades,
-    "Director": directors
+    "genre": genres,
+    "decade": decades,
+    "director": directors
   }
 
   return (
@@ -16,7 +16,6 @@ const FilterBar = ({ genres, decades, directors }) => {
       <div className ="dropdown-container">
       {labels.map((label, i) => {
           const dropdownValues=dropdownTypes[label];
-
           return <Filter label={label} key={i} dropdownValues={dropdownValues} />
         })
       }

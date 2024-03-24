@@ -4,7 +4,7 @@ import "../../styles/app.scss";
 const JobCard = ({ title, director, decade }) => {
 
   return (
-    <div className="job-card">
+    <div className="film-card">
 
       <div className="job-details">
         <p className="company">Director: {director}</p>

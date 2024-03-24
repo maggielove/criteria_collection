@@ -134,6 +134,7 @@ app.get('/api/films', async (req, res) => {
       decade: true,
     },
   })
+
   res.json(films)
 })
 
