@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { fetchHelper } from '../utilities/api';
 
-const Filter = ({ label, dropdownValues }) => {
+const Filter = ({ label, dropdownValues, updateFilms }) => {
   const [category, setCategory] = useState('');
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -16,6 +17,9 @@ const Filter = ({ label, dropdownValues }) => {
       searchParams.set(searchParamKey, e.target.value);
       return searchParams;
     })
+
+    // update film listings
+    updateFilms();
   }
 
   return (

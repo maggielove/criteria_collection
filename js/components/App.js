@@ -10,6 +10,7 @@ const App = () => {
   const [directors, setDirectors] = useState([]);
   const [decades, setDecades] = useState([]);
 
+  // Initial data load
   useEffect(() => {
     fetchHelper('/api/films', setFilms)
     setDataFetched(true);
@@ -26,11 +27,19 @@ const App = () => {
   useEffect(() => {
     fetchHelper('/api/decades', setDecades)
   }, [dataFetched]);
+  // end initial data load
+
+  const updateFilms = () => {
+    const searchQuery = window.location.search;
+
+    // request data from the API
+    fetchHelper(`/api/${searchQuery}`, setFilms);
+  }
 
    return (
      <>
       <FilterBar directors={directors ? directors : []} genres={genres ? genres : []}
-      decades={decades ? decades : []} />
+      decades={decades ? decades : []} updateFilms={updateFilms} />
       {films &&
         films.map((film, index) => <FilmCard director={film.director.name}
           title={film.title} decade={film.decade.name} key={index}

@@ -135,6 +135,8 @@ app.get('/api/films', async (req, res) => {
     },
   })
 
+  console.log('films ', films);
+
   res.json(films)
 })
 
@@ -151,6 +153,45 @@ app.get('/api/directors', async(req, res) => {
 app.get('/api/decades', async(req, res) => {
   const genres = await prisma.decade.findMany()
   res.json(genres)
+})
+
+
+//queries
+app.get(`/api/`, async (req, res) => {
+  let filteredFilms;
+
+  if (req.query) {
+    const queryObj = req.query;
+
+    // convert strings to integers
+    let genreIdInt = req.query['genreId'] ? Number(req.query['genreId']) : undefined;
+    let decadeIdInt = req.query['decadeId'] ? Number(req.query['decadeId']) : undefined;
+    let directorIdInt = req.query['directorId'] ? Number(req.query['directorId']) : undefined;
+
+    filteredFilms = await prisma.film.findMany({
+      where: {
+        AND: [{
+          'genreId': genreIdInt
+        },
+        {
+          'decadeId': decadeIdInt
+        },
+        {
+          'directorId': directorIdInt
+        }
+        ]
+      },
+      include: { // includes nested values (name) in response
+        genre: true,
+        director: true,
+        decade: true,
+      },
+    });
+
+    console.log(`filtered results! `, filteredFilms);
+
+    res.json(filteredFilms);
+  }
 })
 
 app.listen(3000, () =>
