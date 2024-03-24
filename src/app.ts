@@ -127,7 +127,13 @@ app.use(express.json())
 
 // REST API routes
 app.get('/api/films', async (req, res) => {
-  const films = await prisma.film.findMany()
+  const films = await prisma.film.findMany({
+    include: { // includes nested values (name) in response
+      genre: true,
+      director: true,
+      decade: true,
+    },
+  })
   res.json(films)
 })
 
