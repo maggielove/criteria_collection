@@ -14,7 +14,7 @@ const JobCard = ({ title, director, decade, image }) => {
         <p className="title">{title}</p>
       </div>
 
-      <p className="year">{decade}</p>
+      <div className="year"><p>{decade}</p></div>
     </div>
   );
 }

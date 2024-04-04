@@ -83,10 +83,11 @@ p {
 
 // Film Card
 .film-card {
+  position: relative;
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 0;
   width: 100%;
   max-width: 400px;
@@ -101,25 +102,40 @@ p {
     margin-bottom: 0;
   }
 
-  .director {
-    font-size: 12px;
-    text-transform: uppercase;
-    color: $warm-yellow;
-    margin-bottom: 4px;
+  .film-details {
+    display: block;
+    min-width: 139px;
+    padding-top: 16px;
+
+    .director {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: $warm-yellow;
+      margin-bottom: 4px;
+    }
+
+    .title {
+      font-family: $serif;
+      color: #f2f2f2;
+      font-size: 18px;
+      font-weight: 700;
+    }
   }
 
-  .title {
-    font-family: $serif;
-    color: #f2f2f2;
-    font-size: 18px;
-    font-weight: 700;
-  }
+
 
   .year {
-    color: $off-white;
+    display: block;
+    // position: absolute;
+    width: 49px;
+    height: 20px;
+    padding: 8px;
     transform: rotate(-270deg);
     background-color: $year-tag-gray;
-    padding: 8px;
+
+    p {
+      color: $off-white;
+    }
   }
 }
 
@@ -127,10 +143,7 @@ p {
   width: 200px;
   height: 200px;
   background-color: #333333;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  row-gap: 12px;
+  display: block;
   margin-right: 12px;
 
   div {
