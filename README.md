@@ -14,3 +14,6 @@ This app is built using Docker, Prisma, the Prisma Client, Express, Webpack, Rea
 
 # To Develop
 - You can view changes instantly, thanks to hot reloading
+
+# To Test
+- Run `npm test`
