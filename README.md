@@ -1,5 +1,7 @@
 This app is built using Docker, Prisma, the Prisma Client, Express, Webpack, React, and SCSS.
 
+![app screenshot](./images/criteria_collection_screenshot.png)
+
 # To Run Locally
 - npm install
 - Make sure Docker is running. (Get Docker: https://docs.docker.com/get-docker/)
