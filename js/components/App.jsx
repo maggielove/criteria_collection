@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+import FilterPage from './FilterPage.jsx';
 import Navigation from './Navigation.jsx';
 import Slides from './Slides.jsx';
-import FilterBar from './FilterBar.jsx';
 import FilmCard from './FilmCard.jsx';
 import { fetchHelper } from '../utilities/api';
 
 const App = () => {
   const [dataFetched, setDataFetched] = useState(false);
+  const [filterPageHidden, setFilterPageHidden] = useState(true);
   const [films, setFilms] = useState([]);
   const [genres, setGenres] = useState([]);
   const [directors, setDirectors] = useState([]);
@@ -38,16 +39,24 @@ const App = () => {
     fetchHelper(`/api/${searchQuery}`, setFilms);
   }
 
+  const handleFilterClick = () => {
+    return filterPageHidden ? setFilterPageHidden(false) :
+    setFilterPageHidden(true);
+  }
+
    return (
      <>
       <Navigation />
       <Slides />
-      <FilterBar directors={directors ? directors : []} genres={genres ? genres : []}
-      decades={decades ? decades : []} updateFilms={updateFilms} />
+      <FilterPage  hidden={filterPageHidden} genres={genres}
+        directors={directors} decades={decades} updateFilms={updateFilms}
+        toggleFilterPage={handleFilterClick} />
 
       <div className="lower-modules-heading">
         <h2 className="listings-header">All Films</h2>
-        <button className="filter-cta">filter +</button>
+        <button className="filter-cta" onClick={handleFilterClick}>
+          filter +
+        </button>
       </div>
 
       <div className="film-card-wrapper">
