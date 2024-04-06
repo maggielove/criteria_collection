@@ -1,3 +1,5 @@
+@import "react-slideshow-image/dist/styles.css";
+
 // fonts
 $sans-serif: 'Helvetica Neue', Arial, sans-serif;
 $serif: 'Times New Roman', 'Georgia', serif;
@@ -32,6 +34,65 @@ p {
   text-align: center;
 }
 
+.navigation {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 73px;
+  padding: 8px 0 8px 24px;
+  font-weight: 500;
+
+  h1 {
+    margin: 0 40px 0 0;
+    padding: 0;
+    width: 100px;
+    font-size: 16px;
+    font-family: $sans-serif;
+    font-weight: 400;
+    color: $off-white;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: $off-white;
+    text-transform: uppercase;
+
+    &:not(:last-of-type) {
+      margin-right: 40px;
+    }
+  }
+}
+
+.slide-container {
+  width: 100%;
+  height: auto; // todo make responsive
+}
+
+.lower-modules-heading {
+  width: 824px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 24px;
+  color: $off-white;
+  font-family: $sans-serif;
+  text-transform: uppercase;
+
+  button {
+    height: 56px;
+    padding: 0 24px;
+    background-color: transparent;
+    border: 1px solid $off-white;
+    color: $off-white;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+}
+
+.listings-header h2 {
+    margin: 0;
+}
+
 // Filter Bar
 .filter-bar {
   margin: 0 auto 12px auto;
@@ -39,16 +100,6 @@ p {
   height: 100px;
   padding: 12px;
   align-items: center;
-
-  h1 {
-    margin: 0;
-    font-family: $sans-serif;
-    font-weight: 400;
-    text-align: center;
-    color: $off-white;
-    text-transform: uppercase;
-    padding-bottom: 12px;
-  }
 
   .dropdown-container {
     display: flex;

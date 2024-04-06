@@ -1,4 +1,3 @@
-import React from "react";
 import "../../styles/app.scss";
 
 const JobCard = ({ title, director, decade, image }) => {

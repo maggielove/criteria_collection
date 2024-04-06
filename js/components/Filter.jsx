@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchHelper } from '../utilities/api';
 
@@ -26,7 +26,7 @@ const Filter = ({ label, dropdownValues, updateFilms }) => {
     <div className='filter'>
       <p className='label'>{label}</p>
       <select value={category} onChange={handleChange}>
-        <option value={''}>all</option>
+        <option name={label} value={''}>all</option>
         {dropdownValues && dropdownValues.map(item =>
           <option value={item.id} key={item.id}>{item.name}</option>
         )}

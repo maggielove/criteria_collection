@@ -1,6 +1,5 @@
-import React from "react";
 import "../../styles/app.scss";
-import Filter from "./Filter";
+import Filter from "./Filter.jsx";
 
 const FilterBar = ({ genres, decades, directors, updateFilms }) => {
   const labels = ["genre", "decade", "director"];
@@ -12,7 +11,6 @@ const FilterBar = ({ genres, decades, directors, updateFilms }) => {
 
   return (
     <div className="filter-bar">
-      <h1>The Criteria Channel</h1>
       <div className ="dropdown-container">
       {labels.map((label, i) => {
           const dropdownValues=dropdownTypes[label];
