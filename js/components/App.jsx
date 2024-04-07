@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import FilterPage from './FilterPage.tsx';
-import Navigation from './Navigation.tsx';
+import Navigation from './Navigation.jsx';
 import Slides from './Slides.jsx';
 import FilmCard from './FilmCard.tsx';
 import { fetchHelper } from '../utilities/api';
@@ -47,7 +47,7 @@ const App = () => {
 
    return (
      <>
-      <Navigation />
+      <Navigation updateFilms={updateFilms} />
       <Slides />
       <FilterPage  hidden={filterPageHidden} genres={genres}
         directors={directors} decades={decades} updateFilms={updateFilms}

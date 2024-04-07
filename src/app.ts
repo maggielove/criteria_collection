@@ -165,6 +165,18 @@ app.get(`/api/`, async (req, res) => {
     let genreIdInt = req.query['genreId'] ? Number(req.query['genreId']) : undefined;
     let decadeIdInt = req.query['decadeId'] ? Number(req.query['decadeId']) : undefined;
     let directorIdInt = req.query['directorId'] ? Number(req.query['directorId']) : undefined;
+    let searchTerm = req.query['search'] ? req.query['search'] : null;
+
+    if (searchTerm) {
+      await prisma.film.findMany({
+        where: {
+          'title': {
+            contains: searchTerm,
+            mode: 'insensitive'
+          }
+        }
+      })
+    }
 
     filteredFilms = await prisma.film.findMany({
       where: {
