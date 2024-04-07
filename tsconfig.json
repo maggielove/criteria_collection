@@ -3,7 +3,11 @@
     "sourceMap": true,
     "outDir": "dist",
     "strict": true,
-    "lib": ["esnext"],
-    "esModuleInterop": true
+    "target": "es6",
+    "lib": ["esnext", "dom", "es6"],
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "module": "commonjs",
+     "allowSyntheticDefaultImports": true,
   }
 }

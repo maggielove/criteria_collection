@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import FilterPage from './FilterPage.jsx';
-import Navigation from './Navigation.jsx';
+import FilterPage from './FilterPage.tsx';
+import Navigation from './Navigation.tsx';
 import Slides from './Slides.jsx';
-import FilmCard from './FilmCard.jsx';
+import FilmCard from './FilmCard.tsx';
 import { fetchHelper } from '../utilities/api';
 
 const App = () => {
   const [dataFetched, setDataFetched] = useState(false);
+  const [serverError, setServerError] = useState("");
   const [filterPageHidden, setFilterPageHidden] = useState(true);
   const [films, setFilms] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -15,20 +16,20 @@ const App = () => {
 
   // Initial data load
   useEffect(() => {
-    fetchHelper('/api/films', setFilms)
+    fetchHelper('/api/films', setFilms, setServerError)
     setDataFetched(true);
   }, [dataFetched]);
 
   useEffect(() => {
-    fetchHelper('/api/genres', setGenres)
+    fetchHelper('/api/genres', setGenres, setServerError)
   }, [dataFetched]);
 
   useEffect(() => {
-    fetchHelper('/api/directors', setDirectors)
+    fetchHelper('/api/directors', setDirectors, setServerError)
   }, [dataFetched]);
 
   useEffect(() => {
-    fetchHelper('/api/decades', setDecades)
+    fetchHelper('/api/decades', setDecades, setServerError)
   }, [dataFetched]);
   // end initial data load
 
@@ -66,7 +67,10 @@ const App = () => {
             />)
         }
       </div>
-      {(films.length === 0) &&
+      {serverError &&
+        <p className="no-results">Apologies, there's been a server error</p>
+      }
+      {!serverError && films.length === 0 &&
         <p className="no-results">No results found</p>
       }
      </>

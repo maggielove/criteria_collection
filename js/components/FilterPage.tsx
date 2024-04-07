@@ -1,7 +1,17 @@
 import FilterBar from './FilterBar.jsx';
 import classNames from 'classnames';
 
-const FilterPage = ({ hidden, directors, genres, decades, updateFilms, toggleFilterPage }) => {
+interface FilterPageProps {
+  hidden: boolean,
+  directors: string[],
+  genres: string[],
+  decades: string[],
+  updateFilms: () => any,
+  toggleFilterPage: () => any
+}
+
+const FilterPage = ({ hidden, directors, genres, decades, updateFilms,
+  toggleFilterPage }: FilterPageProps) => {
   const filterPageClass=classNames("filter-page", {"hidden": hidden});
 
    return (

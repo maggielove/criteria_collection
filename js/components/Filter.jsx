@@ -2,6 +2,17 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchHelper } from '../utilities/api';
 
+// interface dropdownObject {
+//   id: number,
+//   name: string
+// }
+//
+// interface FilterProps {
+//   label: string,
+//   dropdownValues: dropdownObject[],
+//   updateFilms: () => any
+// }
+
 const Filter = ({ label, dropdownValues, updateFilms }) => {
   const [category, setCategory] = useState('');
   let [searchParams, setSearchParams] = useSearchParams();

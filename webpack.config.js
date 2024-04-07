@@ -41,7 +41,15 @@ module.exports = {
           "sass-loader"
         ],
       },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: "ts-loader"
+      }
     ],
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js', '.jsx' ],
   },
   plugins: [
     new HTMLWebpackPlugin({

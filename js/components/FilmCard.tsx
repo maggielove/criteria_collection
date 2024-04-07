@@ -1,6 +1,13 @@
 import "../../styles/app.scss";
 
-const JobCard = ({ title, director, decade, image }) => {
+interface FilmCardProps {
+  title: string,
+  director: string,
+  decade: string,
+  image: string
+}
+
+const FilmCard = ({ title, director, decade, image }: FilmCardProps) => {
 
   return (
     <div className="film-card">
@@ -18,4 +25,4 @@ const JobCard = ({ title, director, decade, image }) => {
   );
 }
 
-export default JobCard;
+export default FilmCard;
