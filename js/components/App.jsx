@@ -45,6 +45,8 @@ const App = () => {
     setFilterPageHidden(true);
   }
 
+  let resultText = films.length === 1 ? 'Result' : 'Results';
+
    return (
      <>
       <Navigation updateFilms={updateFilms} />
@@ -60,12 +62,13 @@ const App = () => {
         </button>
       </div>
 
+      {films.length > 0 && <p className="results-count">
+        <span className="number">{films.length} </span>{resultText}</p>
+      }
       <div className="film-card-wrapper">
-        {films &&
-          films.map((film, index) => <FilmCard director={film.director.name}
+        {films && films.map((film, index) => <FilmCard director={film.director.name}
             title={film.title} image={film.image} decade={film.decade.name} key={index}
-            />)
-        }
+            />)}
       </div>
       {serverError &&
         <p className="no-results">Apologies, there's been a server error</p>

@@ -7,6 +7,8 @@ This is a web app based on the Criterion Channel. (It's not for profit. Its sole
 - Lets you see a listing of all films in the database. Cards are populated with film information pulled from the database.
 - Lets you filter films by director, decade and genre.
 (This is not an accurate reflection of all directors, decades or genres of film.)
+- Lets you search
+- Includes search result count
 - Clear messaging for server errors, no results found
 
 # To Run Locally

@@ -11,7 +11,8 @@ const FilterBar = ({ genres, decades, directors, updateFilms }) => {
 
   return (
     <div className="filter-bar">
-      <div className ="dropdown-container">
+      <p className="heading">Filters</p>
+      <div className="dropdown-container">
       {labels.map((label, i) => {
           const dropdownValues=dropdownTypes[label];
           return <Filter label={label} key={i} dropdownValues={dropdownValues}

@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 const Navigation = ({ updateFilms }) => {
   let [searchTerm, setSearchTerm] = useState("");
   let [searchParams, setSearchParams] = useSearchParams();
+
+  const inputRef = useRef(null);
+
+  const handleSearchClick = (e) => {
+    inputRef.current.focus();
+  }
 
   const handleChange = (e) => {
     // updates text in form
@@ -35,8 +41,9 @@ const Navigation = ({ updateFilms }) => {
       <p>Now Playing</p>
       <p>All Films</p>
       <form onKeyDown={handleKeyDown} onSubmit={handleSubmit}>
-        <label htmlFor="search">Search</label>
-        <input type="text" id="search" value={searchTerm} onChange={handleChange} />
+        <label htmlFor="search" onClick={handleSearchClick}>Search</label>
+        <input ref={inputRef} type="text" id="search" value={searchTerm}
+          onChange={handleChange} />
       </form>
      </div>
    );

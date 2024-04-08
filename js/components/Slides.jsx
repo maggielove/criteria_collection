@@ -12,7 +12,7 @@ const divStyle = {
   alignItems: 'center',
   justifyContent: 'center',
   backgroundSize: '100%',
-  minHeight: '500px',
+  minHeight: '670px',
   height: '100%'
 }
 
