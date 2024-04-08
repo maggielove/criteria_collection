@@ -165,38 +165,43 @@ app.get(`/api/`, async (req, res) => {
     let genreIdInt = req.query['genreId'] ? Number(req.query['genreId']) : undefined;
     let decadeIdInt = req.query['decadeId'] ? Number(req.query['decadeId']) : undefined;
     let directorIdInt = req.query['directorId'] ? Number(req.query['directorId']) : undefined;
-    let searchTerm = req.query['search'] ? req.query['search'] : null;
 
-    if (searchTerm) {
-      await prisma.film.findMany({
+    if (req.query.search) {
+      let searchTerm: string = req.query.search.toString();
+      filteredFilms = await prisma.film.findMany({
         where: {
-          'title': {
+          title: {
             contains: searchTerm,
             mode: 'insensitive'
           }
-        }
+        },
+        include: { // includes nested values (name) in response
+          genre: true,
+          director: true,
+          decade: true,
+        },
       })
+    } else {
+      filteredFilms = await prisma.film.findMany({
+        where: {
+          AND: [{
+            'genreId': genreIdInt
+          },
+          {
+            'decadeId': decadeIdInt
+          },
+          {
+            'directorId': directorIdInt
+          }
+          ]
+        },
+        include: { // includes nested values (name) in response
+          genre: true,
+          director: true,
+          decade: true,
+        },
+      });
     }
-
-    filteredFilms = await prisma.film.findMany({
-      where: {
-        AND: [{
-          'genreId': genreIdInt
-        },
-        {
-          'decadeId': decadeIdInt
-        },
-        {
-          'directorId': directorIdInt
-        }
-        ]
-      },
-      include: { // includes nested values (name) in response
-        genre: true,
-        director: true,
-        decade: true,
-      },
-    });
 
     res.json(filteredFilms);
   }
