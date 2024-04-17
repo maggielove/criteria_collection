@@ -1,8 +1,11 @@
 import { useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import useToken from '../hooks/useToken';
+import Login from './Login.jsx';
 
 const Navigation = ({ updateFilms }) => {
-  let [searchTerm, setSearchTerm] = useState("");
+  const { setToken, token } = useToken();
+  let [searchTerm, setSearchTerm] = useState('');
   let [searchParams, setSearchParams] = useSearchParams();
 
   const inputRef = useRef(null);
@@ -45,6 +48,7 @@ const Navigation = ({ updateFilms }) => {
         <input ref={inputRef} type="text" id="search" value={searchTerm}
           onChange={handleChange} />
       </form>
+      {!token ? <Login setToken={setToken} /> : <div><p>Hi, User</p></div>}
      </div>
    );
 };

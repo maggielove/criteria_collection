@@ -126,6 +126,12 @@ const app = express()
 app.use(express.json())
 
 // REST API routes
+app.post('/login', async (req, res) => {
+  res.send({
+    token: 'test123'
+  });
+});
+
 app.get('/api/films', async (req, res) => {
   const films = await prisma.film.findMany({
     include: { // includes nested values (name) in response
@@ -208,5 +214,5 @@ app.get(`/api/`, async (req, res) => {
 })
 
 app.listen(3000, () =>
-  console.log('REST API server ready at: http://localhost:3000/api/'),
+  console.log('REST API server ready at: http://localhost:3000/'),
 )
