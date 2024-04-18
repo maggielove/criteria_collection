@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
+import Login from './Login.jsx';
 import FilterPage from './FilterPage.tsx';
 import Navigation from './Navigation.jsx';
 import Slides from './Slides.jsx';
 import FilmCard from './FilmCard.tsx';
 import { fetchHelper } from '../utilities/api';
+// import useToken from '../hooks/useToken';
+import classNames from 'classnames';
 
 const App = () => {
+  // const { setToken, token } = useToken();
+
   const [dataFetched, setDataFetched] = useState(false);
-  const [serverError, setServerError] = useState("");
+  const [serverError, setServerError] = useState('');
   const [filterPageHidden, setFilterPageHidden] = useState(true);
   const [films, setFilms] = useState([]);
   const [genres, setGenres] = useState([]);

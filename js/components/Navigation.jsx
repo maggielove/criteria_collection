@@ -1,12 +1,16 @@
-import { useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import useToken from '../hooks/useToken';
-import Login from './Login.jsx';
 
-const Navigation = ({ updateFilms }) => {
+const Navigation = ({ updateFilms, onSignIn }) => {
   const { setToken, token } = useToken();
   let [searchTerm, setSearchTerm] = useState('');
   let [searchParams, setSearchParams] = useSearchParams();
+
+  // Change "Sign In" text to user greeting after log in
+  // useEffect(() => {
+  //   // setToken();
+  // }, [token]);
 
   const inputRef = useRef(null);
 
@@ -48,7 +52,8 @@ const Navigation = ({ updateFilms }) => {
         <input ref={inputRef} type="text" id="search" value={searchTerm}
           onChange={handleChange} />
       </form>
-      {!token ? <Login setToken={setToken} /> : <div><p>Hi, User</p></div>}
+      {!token ? <p className="sign-in" onClick={onSignIn}>Sign in</p>
+        : <div><p>Hi, User</p></div>}
      </div>
    );
 };

@@ -26,22 +26,26 @@ const Login = ({ setToken }) => {
   }
 
   return (
-    <div className="login-wrapper">
-      <h1>Sign in</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Username</p>
-          <input type="text" onChange={e => setUserName(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-        </label>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+    <>
+      <div className="modal-wrapper">
+      </div>
+      <div className="login-modal">
+        <h1>Log In</h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <p>Username</p>
+            <input type="text" onChange={e => setUserName(e.target.value)} />
+          </label>
+          <label>
+            <p>Password</p>
+            <input type="password" onChange={e => setPassword(e.target.value)} />
+          </label>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </>
   )
 }
 
