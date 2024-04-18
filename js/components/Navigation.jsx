@@ -2,15 +2,12 @@ import { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import useToken from '../hooks/useToken';
 
-const Navigation = ({ updateFilms, onSignIn }) => {
-  const { setToken, token } = useToken();
+const Navigation = ({ updateFilms, onSignIn, token }) => {
+  // const { setToken, token } = useToken();
   let [searchTerm, setSearchTerm] = useState('');
-  let [searchParams, setSearchParams] = useSearchParams();
+  let [loggedIn, setLoggedIn] = useState(false);
 
-  // Change "Sign In" text to user greeting after log in
-  // useEffect(() => {
-  //   // setToken();
-  // }, [token]);
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const inputRef = useRef(null);
 
@@ -44,16 +41,21 @@ const Navigation = ({ updateFilms, onSignIn }) => {
 
    return (
      <div className="navigation">
-      <h1>The Criteria Channel</h1>
-      <p>Now Playing</p>
-      <p>All Films</p>
-      <form onKeyDown={handleKeyDown} onSubmit={handleSubmit}>
-        <label htmlFor="search" onClick={handleSearchClick}>Search</label>
-        <input ref={inputRef} type="text" id="search" value={searchTerm}
-          onChange={handleChange} />
-      </form>
-      {!token ? <p className="sign-in" onClick={onSignIn}>Sign in</p>
-        : <div><p>Hi, User</p></div>}
+      <div className="left">
+        <h1>The Criteria Channel</h1>
+        <p>Now Playing</p>
+        <p>All Films</p>
+        <form onKeyDown={handleKeyDown} onSubmit={handleSubmit}>
+          <label htmlFor="search" onClick={handleSearchClick}>Search</label>
+          <input ref={inputRef} type="text" id="search" value={searchTerm}
+            onChange={handleChange} />
+        </form>
+      </div>
+
+      <div className="right">
+        {!token ? <p className="sign-in" onClick={onSignIn}>Sign in</p>
+          : <div><p>Hi, User</p></div>}
+      </div>
      </div>
    );
 };

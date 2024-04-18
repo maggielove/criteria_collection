@@ -110,12 +110,17 @@ p {
   z-index: 0;
   position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   height: 73px;
   padding: 8px 0 8px 24px;
   font-family: $sans-serif;
   font-weight: 500;
+
+  .left {
+    display: flex;
+    align-items: center;
+  }
 
   h1 {
     margin: 0 40px 0 0;
@@ -132,6 +137,7 @@ p {
     color: $off-white;
     text-transform: uppercase;
     margin-right: 40px;
+
   }
 
   /* Search + Login */

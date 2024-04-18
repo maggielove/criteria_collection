@@ -5,11 +5,11 @@ import Navigation from './Navigation.jsx';
 import Slides from './Slides.jsx';
 import FilmCard from './FilmCard.tsx';
 import { fetchHelper } from '../utilities/api';
-// import useToken from '../hooks/useToken';
+import useToken from '../hooks/useToken';
 import classNames from 'classnames';
 
 const App = () => {
-  // const { setToken, token } = useToken();
+  const { setToken, token } = useToken();
 
   const [dataFetched, setDataFetched] = useState(false);
   const [serverError, setServerError] = useState('');
@@ -18,6 +18,12 @@ const App = () => {
   const [genres, setGenres] = useState([]);
   const [directors, setDirectors] = useState([]);
   const [decades, setDecades] = useState([]);
+  const [showLogIn, setShowLogIn] = useState(false);
+
+  // make log in modal disappear when token is set
+  useEffect(() => {
+    setShowLogIn(false);
+  }, [token]);
 
   // Initial data load
   useEffect(() => {
@@ -50,11 +56,16 @@ const App = () => {
     setFilterPageHidden(true);
   }
 
+  const handleSignIn = () => {
+    setShowLogIn(true);
+  }
+
   let resultText = films.length === 1 ? 'Result' : 'Results';
 
    return (
      <>
-      <Navigation updateFilms={updateFilms} />
+     { showLogIn && <Login setToken={setToken} /> }
+      <Navigation updateFilms={updateFilms} onSignIn={handleSignIn} token={token} />
       <Slides />
       <FilterPage  hidden={filterPageHidden} genres={genres}
         directors={directors} decades={decades} updateFilms={updateFilms}
