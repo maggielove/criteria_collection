@@ -207,15 +207,33 @@ p {
   height: auto; // todo make responsive
 }
 
+.lower-modules {
+  h2 {
+    font-family: $sans-serif;
+    color: $off-white;
+    text-transform: uppercase;
+  }
+
+  .my-list {
+    h2, .no-results {
+      width: 824px;
+      margin: 24px auto 24px;
+    }
+
+    .no-results {
+      text-align: left;
+      font-size: 18px;
+    }
+  }
+
+}
+
 .lower-modules-heading {
   width: 824px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 24px auto 24px;
-  color: $off-white;
-  font-family: $sans-serif;
-  text-transform: uppercase;
 
   button {
     height: 56px;
@@ -346,7 +364,6 @@ p {
     }
   }
 
-
   .year {
     display: block;
     width: 49px;
@@ -358,6 +375,17 @@ p {
 
     p {
       color: $off-white;
+    }
+  }
+
+  .add-icon {
+    font-weight: 700;
+    color: $off-white;
+    font-size: 20px;
+
+    &:hover {
+      cursor: pointer;
+      color: $warm-yellow;
     }
   }
 }

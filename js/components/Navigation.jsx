@@ -52,7 +52,7 @@ const Navigation = ({ updateFilms, onSignIn, token, username }) => {
 
       <div className="right">
         {!token ? <p className="sign-in" onClick={onSignIn}>Sign in</p>
-          : <div><p>Hi, {username}</p></div>}
+          : <div><p>Hi, {token.username}</p></div>}
       </div>
      </div>
    );

@@ -127,21 +127,64 @@ app.use(express.json())
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
-  let userFound = await prisma.user.findUnique({
+  let user = await prisma.user.findUnique({
     where: {
       username: username,
       password: password
     }
   })
 
-  if (userFound) {
-    res.send({
-      token: 'cc2024'
-    });
+  if (user) {
+    //send user id instead
+    res.json({ user: { id: user.id, username: user.username } });
   } else {
     res.status(404).send({error: { message: 'User not found'}})
   }
 
+});
+
+app.post(`/user`, async (req, res) => {
+  const { userId, filmId } = req.body;
+  // let updatedUser;
+
+  const filmToAdd = await prisma.film.findUnique({
+    where: {
+      id: filmId
+    }
+  })
+
+  const updatedUser = prisma.user.update({
+    where: {
+      id: userId
+    },
+    data: {
+      myList: {
+        push: filmToAdd
+      }
+    }
+  })
+
+  // let updatedUser = Promise.resolve(prisma.film.findUnique({
+  //   where: {
+  //     id: filmId
+  //   }
+  // }))
+  // .then(value => prisma.user.update({
+  //   where: {
+  //     id: userId
+  //   },
+  //   data: {
+  //     myList: {
+  //       push: value
+  //     }
+  //   }
+  // }))
+
+  res.json(updatedUser);
+  // update film list to add filmId to list of user with matching Id
+  // may need to update schema to only store ids. Or query for film with this id
+
+  // console.log user films/ send these back
 });
 
 app.get('/api/films', async (req, res) => {
@@ -170,7 +213,6 @@ app.get('/api/decades', async(req, res) => {
   const genres = await prisma.decade.findMany()
   res.json(genres)
 })
-
 
 //queries
 app.get(`/api/`, async (req, res) => {

@@ -24,8 +24,10 @@ const Login = ({ setToken, setShowLogIn, setUsername }) => {
       password
     });
 
+    console.log({result});
+
     // user found
-    if (result.token) {
+    if (result.user) {
       setToken(result);
       setUsername(username); // from props; sets username in nav bar
     } else if (result.error) {
