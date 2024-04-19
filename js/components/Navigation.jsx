@@ -2,11 +2,9 @@ import { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import useToken from '../hooks/useToken';
 
-const Navigation = ({ updateFilms, onSignIn, token }) => {
-  // const { setToken, token } = useToken();
-  let [searchTerm, setSearchTerm] = useState('');
-  let [loggedIn, setLoggedIn] = useState(false);
-
+const Navigation = ({ updateFilms, onSignIn, token, username }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
 
   const inputRef = useRef(null);
@@ -43,8 +41,8 @@ const Navigation = ({ updateFilms, onSignIn, token }) => {
      <div className="navigation">
       <div className="left">
         <h1>The Criteria Channel</h1>
-        <p>Now Playing</p>
-        <p>All Films</p>
+        <a href="/">Now Playing</a>
+        <a href="#allFilms">All Films</a>
         <form onKeyDown={handleKeyDown} onSubmit={handleSubmit}>
           <label htmlFor="search" onClick={handleSearchClick}>Search</label>
           <input ref={inputRef} type="text" id="search" value={searchTerm}
@@ -54,7 +52,7 @@ const Navigation = ({ updateFilms, onSignIn, token }) => {
 
       <div className="right">
         {!token ? <p className="sign-in" onClick={onSignIn}>Sign in</p>
-          : <div><p>Hi, User</p></div>}
+          : <div><p>Hi, {username}</p></div>}
       </div>
      </div>
    );

@@ -18,6 +18,7 @@ const FilmCard = ({ title, director, decade, image }: FilmCardProps) => {
       <div className="film-details">
         <p className="director">{director}</p>
         <p className="title">{title}</p>
+        <p className="add-icon">+</p>
       </div>
 
       <div className="year"><p>{decade}</p></div>

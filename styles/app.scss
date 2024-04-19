@@ -12,6 +12,7 @@ $film-card-gray: #272727;
 $year-tag-gray: #1A1A1A;
 $dark-gray: #737373;
 $off-white: #f2f2f2;
+$error-orange: #ff8533;
 $aquamarine: #00b3b3;
 
 // App-wide
@@ -47,21 +48,41 @@ p {
 
 .login-modal {
   position: absolute;
-  top: calc(50% - 100px);
-  left: calc(50% - 100px);
+  top: calc(50% - 134px);
+  left: calc(50% - 116px);
   background: $white;
   z-index: 2;
   padding: 16px;
   font-family: $sans-serif;
   width: 200px;
-  height: 200px;
+  height: fit-content;
   border-top: 3px solid $warm-yellow;
 
-  h1 {
-    font-size: 24px;
-    line-height: 28px;
-    margin: 0 0 24px 0;
-    font-weight: 400;
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .close:hover {
+      cursor: pointer;
+    }
+  }
+
+  .error {
+    text-transform: uppercase;
+    color: $error-orange;
   }
 
   form {
@@ -132,12 +153,15 @@ p {
     text-transform: uppercase;
   }
 
-  p {
+  p, a {
     margin-bottom: 0;
     color: $off-white;
     text-transform: uppercase;
     margin-right: 40px;
+  }
 
+  a {
+    text-decoration: none;
   }
 
   /* Search + Login */

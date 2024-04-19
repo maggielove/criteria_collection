@@ -120,16 +120,28 @@ const prisma = new PrismaClient()
   //   .finally(async () => await prisma.$disconnect())
 
 
-// TODO add update function ? Use prisma studio?
-
 const app = express()
 app.use(express.json())
 
 // REST API routes
 app.post('/login', async (req, res) => {
-  res.send({
-    token: 'test123'
-  });
+  const { username, password } = req.body;
+
+  let userFound = await prisma.user.findUnique({
+    where: {
+      username: username,
+      password: password
+    }
+  })
+
+  if (userFound) {
+    res.send({
+      token: 'cc2024'
+    });
+  } else {
+    res.status(404).send({error: { message: 'User not found'}})
+  }
+
 });
 
 app.get('/api/films', async (req, res) => {

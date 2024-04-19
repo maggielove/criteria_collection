@@ -9,6 +9,7 @@ const spanStyle = {
 
 const divStyle = {
   display: 'flex',
+  padding: '20px',
   alignItems: 'center',
   justifyContent: 'center',
   backgroundSize: '100%',
@@ -38,7 +39,7 @@ const slideImages = [
 const Slides = () => {
     return (
       <div className="slide-container">
-        <Slide>
+        <Slide autoplay={false}>
          {slideImages.map((slideImage, index)=> (
             <div key={index}>
               <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>

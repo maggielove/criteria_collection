@@ -10,6 +10,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id Int @default(autoincrement()) @id
+  username String @db.VarChar(25) @unique
+  password String
+  myList Film[]
+}
+
 model Film {
   id Int @default(autoincrement()) @id
   title String
@@ -20,6 +27,7 @@ model Film {
   decade Decade? @relation(fields: [decadeId], references: [id])
   decadeId Int?
   image String?
+  listedBy User[] 
 }
 
 model Genre {

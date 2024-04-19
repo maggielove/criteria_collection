@@ -19,6 +19,8 @@ const App = () => {
   const [directors, setDirectors] = useState([]);
   const [decades, setDecades] = useState([]);
   const [showLogIn, setShowLogIn] = useState(false);
+  // TODO prevent empty string when logged-in user refreshes page
+  const [username, setUsername] = useState('');
 
   // make log in modal disappear when token is set
   useEffect(() => {
@@ -64,15 +66,17 @@ const App = () => {
 
    return (
      <>
-     { showLogIn && <Login setToken={setToken} /> }
-      <Navigation updateFilms={updateFilms} onSignIn={handleSignIn} token={token} />
+     { showLogIn && <Login setToken={setToken} setShowLogIn={setShowLogIn}
+      setUsername={setUsername} /> }
+      <Navigation updateFilms={updateFilms} onSignIn={handleSignIn} token={token}
+        username={username} />
       <Slides />
       <FilterPage  hidden={filterPageHidden} genres={genres}
         directors={directors} decades={decades} updateFilms={updateFilms}
         toggleFilterPage={handleFilterClick} />
 
       <div className="lower-modules-heading">
-        <h2 className="listings-header">All Films</h2>
+        <h2 id="allFilms" className="listings-header">All Films</h2>
         <button className="filter-cta" onClick={handleFilterClick}>
           filter +
         </button>

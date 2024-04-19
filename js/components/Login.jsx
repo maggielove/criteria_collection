@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const loginUser = (credentials) => {
   return fetch('/login', {
@@ -9,28 +9,51 @@ const loginUser = (credentials) => {
      body: JSON.stringify(credentials)
    })
    .then(data => data.json())
+   .catch(error => error.json())
 }
 
-const Login = ({ setToken }) => {
-  const [username, setUserName] = useState();
+const Login = ({ setToken, setShowLogIn, setUsername }) => {
+  const [username, setUserName] = useState(''); // updates username in form
   const [password, setPassword] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
+    const result = await loginUser({
       username,
       password
     });
 
-    setToken(token);
+    // user found
+    if (result.token) {
+      setToken(result);
+      setUsername(username); // from props; sets username in nav bar
+    } else if (result.error) {
+      setErrorMessage(result.error.message);
+    }
+  }
+
+  const handleClose = () => {
+    setShowLogIn(false);
+  }
+
+  // For accessibility, allow users to esc out of modal
+  const handleKeyDown = e => {
+    if (e.key === "Escape") {
+      setShowLogIn(false);
+    }
   }
 
   return (
     <>
       <div className="modal-wrapper">
       </div>
-      <div className="login-modal">
-        <h1>Log In</h1>
+      <div className="login-modal" onKeyDown={handleKeyDown}>
+        <div className="heading">
+          <h1>Log In</h1>
+          <p className="close" onClick={handleClose}>X</p>
+        </div>
+        <p className="error">{errorMessage}</p>
         <form onSubmit={handleSubmit}>
           <label>
             <p>Username</p>
