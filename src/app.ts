@@ -126,17 +126,26 @@ app.use(express.json())
 // REST API routes
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
+  console.log({username}, {password})
 
   let user = await prisma.user.findUnique({
     where: {
       username: username,
       password: password
+    },
+    include: {
+      myList: {
+        include: {
+          director: true,
+          decade: true
+        }
+      }
     }
-  })
+  });
 
   if (user) {
     //send user id instead
-    res.json({ user: { id: user.id, username: user.username } });
+    res.json({ user: { id: user.id, username: user.username, myList: user.myList } });
   } else {
     res.status(404).send({error: { message: 'User not found'}})
   }
@@ -145,46 +154,29 @@ app.post('/login', async (req, res) => {
 
 app.post(`/user`, async (req, res) => {
   const { userId, filmId } = req.body;
-  // let updatedUser;
 
-  const filmToAdd = await prisma.film.findUnique({
-    where: {
-      id: filmId
-    }
-  })
+  // TODO add logic to search myList for filmId, send back message if ID is
+  // already in the list
 
-  const updatedUser = prisma.user.update({
-    where: {
-      id: userId
-    },
+  // update film list to add filmId to list of user with matching Id
+  let updatedUser = await prisma.user.update({
+    where: { id: userId },
     data: {
       myList: {
-        push: filmToAdd
+        connect: { id: filmId }
+      }
+    },
+    include: {
+      myList: {
+        include: {
+          director: true,
+          decade: true
+        }
       }
     }
   })
 
-  // let updatedUser = Promise.resolve(prisma.film.findUnique({
-  //   where: {
-  //     id: filmId
-  //   }
-  // }))
-  // .then(value => prisma.user.update({
-  //   where: {
-  //     id: userId
-  //   },
-  //   data: {
-  //     myList: {
-  //       push: value
-  //     }
-  //   }
-  // }))
-
-  res.json(updatedUser);
-  // update film list to add filmId to list of user with matching Id
-  // may need to update schema to only store ids. Or query for film with this id
-
-  // console.log user films/ send these back
+  res.json({ myList: updatedUser.myList });
 });
 
 app.get('/api/films', async (req, res) => {
@@ -268,5 +260,5 @@ app.get(`/api/`, async (req, res) => {
 })
 
 app.listen(3000, () =>
-  console.log('REST API server ready at: http://localhost:3000/'),
+  console.log('REST API server ready at: http://localhost:3000/api'),
 )

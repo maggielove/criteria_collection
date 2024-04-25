@@ -10,6 +10,8 @@ This is a web app based on the Criterion Channel. (It's not for profit. Its sole
 - Lets you search
 - Includes search result count
 - Clear messaging for server errors, no results found
+- Log in (test accounts: username - yungalpacino / password - attica; username - partygirl / password - parkerposey)
+- Once logged in, you can add films to your Watch List
 
 # To Run Locally
 - npm install

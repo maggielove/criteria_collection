@@ -8,9 +8,22 @@ import { fetchHelper } from '../utilities/api';
 import useToken from '../hooks/useToken';
 import classNames from 'classnames';
 
+const updateMyList = (data) => {
+  return fetch('/user', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ userId: data.userId, filmId: data.filmId })
+  })
+  .then(data => data.json())
+  .catch(error => error)
+}
+
 const App = () => {
   const { setToken, token } = useToken();
 
+  // TODO change to firstDataFetched
   const [dataFetched, setDataFetched] = useState(false);
   const [serverError, setServerError] = useState('');
   const [filterPageHidden, setFilterPageHidden] = useState(true);
@@ -26,6 +39,10 @@ const App = () => {
   // make log in modal disappear when token is set
   useEffect(() => {
     setShowLogIn(false);
+
+    if (token) {
+      setMyList(token.myList) // continue to display user list on page reload
+    }
   }, [token]);
 
   // Initial data load
@@ -63,6 +80,17 @@ const App = () => {
     setShowLogIn(true);
   }
 
+  const handleAddFilm = async (film) => {
+    // Hit API to update user list
+    const result = await updateMyList({
+      userId: token.id,
+      filmId: film.id
+    });
+
+    // update "My Films list"
+    setMyList(result.myList);
+  }
+
   let resultText = films.length === 1 ? 'Result' : 'Results';
 
   // const myListHeadingClass = classNames("");
@@ -70,18 +98,27 @@ const App = () => {
    return (
      <>
      { showLogIn && <Login setToken={setToken} setShowLogIn={setShowLogIn}
-      setUsername={setUsername} /> }
+      setUsername={setUsername} setMyList={setMyList} /> }
       <Navigation updateFilms={updateFilms} onSignIn={handleSignIn} token={token} />
       <Slides />
       <FilterPage hidden={filterPageHidden} genres={genres}
         directors={directors} decades={decades} updateFilms={updateFilms}
         toggleFilterPage={handleFilterClick} />
       <div className="lower-modules">
+      {token &&
         <div className="my-list">
           <h2 className="listings-header">My List</h2>
-          {!myList.length ? <p className="no-results">No films yet</p> :
-          <p className="no-results">TODO show your films here</p>}
+          {!myList.length && <p className="no-results">No films yet</p>}
+          {myList.length &&
+            <div className="films-wrapper">
+              {myList.map(film =>
+                <FilmCard film={film} key={film.id} token={token}
+                handleAddFilm={() => handleAddFilm(film)} isSaved={true} />
+              )}
+            </div>
+          }
         </div>
+        }
         <div className="lower-modules-heading">
           <h2 id="allFilms" className="listings-header">All Films</h2>
           <button className="filter-cta" onClick={handleFilterClick}>
@@ -93,7 +130,7 @@ const App = () => {
         }
         <div className="film-card-wrapper">
           {films && films.map((film, index) => <FilmCard film={film} key={index}
-          token={token} />)}
+          token={token} handleAddFilm={() => handleAddFilm(film)} />)}
         </div>
         {serverError &&
           <p className="no-results">Apologies, there's been a server error</p>

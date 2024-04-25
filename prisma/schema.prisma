@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,39 +8,39 @@ datasource db {
 }
 
 model User {
-  id Int @default(autoincrement()) @id
-  username String @db.VarChar(25) @unique
+  id       Int    @id @default(autoincrement())
+  username String @unique @db.VarChar(25)
   password String
-  myList Film[]
+  myList   Film[]
 }
 
 model Film {
-  id Int @default(autoincrement()) @id
-  title String
-  genre Genre? @relation(fields: [genreId], references: [id])
-  genreId Int?
-  director Director? @relation(fields: [directorId], references: [id])
+  id         Int       @id @default(autoincrement())
+  title      String
+  genreId    Int?
+  decadeId   Int?
   directorId Int?
-  decade Decade? @relation(fields: [decadeId], references: [id])
-  decadeId Int?
-  image String?
-  listedBy User[] 
+  image      String?
+  decade     Decade?   @relation(fields: [decadeId], references: [id])
+  director   Director? @relation(fields: [directorId], references: [id])
+  genre      Genre?    @relation(fields: [genreId], references: [id])
+  listedBy   User[]
 }
 
 model Genre {
-  id Int @default(autoincrement()) @id
-  name String @unique
+  id    Int    @id @default(autoincrement())
+  name  String @unique
   films Film[]
 }
 
 model Director {
-  id Int @default(autoincrement()) @id
-  name String @unique
+  id    Int    @id @default(autoincrement())
+  name  String @unique
   films Film[]
 }
 
 model Decade {
-  id Int @default(autoincrement()) @id
-  name String @unique
+  id    Int    @id @default(autoincrement())
+  name  String @unique
   films Film[]
 }

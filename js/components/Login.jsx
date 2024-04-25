@@ -12,7 +12,7 @@ const loginUser = (credentials) => {
    .catch(error => error.json())
 }
 
-const Login = ({ setToken, setShowLogIn, setUsername }) => {
+const Login = ({ setToken, setShowLogIn, setUsername, setMyList }) => {
   const [username, setUserName] = useState(''); // updates username in form
   const [password, setPassword] = useState();
   const [errorMessage, setErrorMessage] = useState('');
@@ -24,12 +24,11 @@ const Login = ({ setToken, setShowLogIn, setUsername }) => {
       password
     });
 
-    console.log({result});
-
     // user found
     if (result.user) {
       setToken(result);
       setUsername(username); // from props; sets username in nav bar
+      setMyList(result.user.myList);
     } else if (result.error) {
       setErrorMessage(result.error.message);
     }

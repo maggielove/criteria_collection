@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "build": "rm -rf dist && webpack --mode development",
+    "build": "rm -rf dist && webpack --mode development && npx prisma generate",
     "serve": "webpack serve",
     "dev": "nodemon app.js"
   },
@@ -50,7 +50,7 @@
     "jsdom": "^24.0.0",
     "msw": "^2.2.13",
     "nodemon": "^3.0.3",
-    "prisma": "^5.9.1",
+    "prisma": "^5.11.0",
     "sass": "^1.70.0",
     "sass-loader": "^14.1.0",
     "style-loader": "^3.3.4",
