@@ -2,15 +2,22 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchHelper } from '../../utilities/api';
 
-// interface dropdownObject {
-//   id: number,
+// interface itemProps {
+//   id: string,
 //   name: string
 // }
 //
 // interface FilterProps {
 //   label: string,
-//   dropdownValues: dropdownObject[],
-//   updateFilms: () => any
+//   dropdownValues: itemProps[],
+//   updateFilms: () => void
+// }
+//
+// interface eventProps {
+//   preventDefault: () => void,
+//   target: {
+//     value: string
+//   }
 // }
 
 const Filter = ({ label, dropdownValues, updateFilms }) => {
@@ -38,7 +45,7 @@ const Filter = ({ label, dropdownValues, updateFilms }) => {
       <p className='label'>{label}</p>
       <select value={category} onChange={handleChange}>
         <option name={label} value={''}>all</option>
-        {dropdownValues && dropdownValues.map(item =>
+        {dropdownValues && dropdownValues.map((item) =>
           <option value={item.id} key={item.id}>{item.name}</option>
         )}
       </select>

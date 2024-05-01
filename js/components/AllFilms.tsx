@@ -1,7 +1,37 @@
-import FilterHeading from './Filter/FilterHeading.jsx';
-import FilmCard from './FilmCard.tsx';
+import FilterHeading from './Filter/FilterHeading';
+import FilmCard from './FilmCard';
 
-const AllFilms = ({ handleFilterClick, films, serverError, token }) => {
+interface DirectorProps {
+  id: number,
+  name: string
+}
+
+interface DecadeProps {
+  id: number,
+  name: string
+}
+
+interface FilmProps {
+  id: number,
+  image: string,
+  director: DirectorProps,
+  title: string,
+  decade: DecadeProps,
+}
+
+interface TokenProps {
+  id: number
+}
+
+interface AllFilmsProps {
+  handleFilterClick: () => void,
+  handleAddFilm: (film: FilmProps) => void,
+  films: FilmProps[],
+  serverError: string,
+  token: TokenProps,
+}
+
+const AllFilms = ({ handleFilterClick, films, serverError, token, handleAddFilm }: AllFilmsProps) => {
   let resultText = films.length === 1 ? 'Result' : 'Results';
 
   return (

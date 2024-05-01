@@ -26,7 +26,7 @@ interface FilmCardProps {
   film: FilmProps,
   token: TokenProps,
   handleAddFilm: () => void,
-  isSaved: boolean
+  isSaved?: boolean
 }
 
 const FilmCard = ({ film, token, handleAddFilm, isSaved }: FilmCardProps) => {

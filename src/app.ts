@@ -126,7 +126,6 @@ app.use(express.json())
 // REST API routes
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  console.log({username}, {password})
 
   let user = await prisma.user.findUnique({
     where: {

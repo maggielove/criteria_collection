@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import Navigation from './Navigation.jsx';
 import Login from './Login.jsx';
 import Slides from './Slides.jsx';
-import MyList from './MyList.jsx';
-import AllFilms from './AllFilms.jsx';
+import MyList from './MyList.tsx';
+import AllFilms from './AllFilms.tsx';
 import FilterPage from './Filter/FilterPage.tsx';
 import { fetchHelper } from '../utilities/api';
 import useToken from '../hooks/useToken';
@@ -104,8 +104,8 @@ const App = () => {
         toggleFilterPage={handleFilterClick} />
       <div className="lower-modules">
       {token && <MyList token={token} myList={myList} handleAddFilm={handleAddFilm} />}
-      <AllFilms handleFilterClick={handleFilterClick} films={films}
-        serverError={serverError} token={token} />
+      <AllFilms handleFilterClick={handleFilterClick} handleAddFilm={handleAddFilm}
+        films={films} serverError={serverError} token={token} />
       </div>
      </>
    );
