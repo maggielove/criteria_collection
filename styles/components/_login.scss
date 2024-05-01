@@ -1,0 +1,64 @@
+@use '../base/colors' as *;
+@use '../base/fonts' as *;
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background-color: $near-black;
+  opacity: 95%;
+  display: flex;
+}
+
+.login-modal {
+  position: absolute;
+  top: calc(50% - 134px);
+  left: calc(50% - 116px);
+  background: $white;
+  z-index: 2;
+  padding: 16px;
+  font-family: $sans-serif;
+  width: 200px;
+  height: fit-content;
+  border-top: 3px solid $warm-yellow;
+
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .close:hover {
+      cursor: pointer;
+    }
+  }
+
+  .error {
+    text-transform: uppercase;
+    color: $error-orange;
+  }
+
+  form {
+
+    input {
+      background-color: $white;
+      color: $near-black;
+      margin-bottom: 16px;
+    }
+
+  }
+}

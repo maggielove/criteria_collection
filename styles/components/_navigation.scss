@@ -1,0 +1,75 @@
+@use '../base/colors' as *;
+@use '../base/fonts' as *;
+
+.navigation {
+  z-index: 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 73px;
+  padding: 8px 0 8px 24px;
+  font-family: $sans-serif;
+  font-weight: 500;
+
+  .left {
+    display: flex;
+    align-items: center;
+  }
+
+  h1 {
+    margin: 0 40px 0 0;
+    padding: 0;
+    width: 100px;
+    font-size: 16px;
+    font-weight: 400;
+    color: $off-white;
+    text-transform: uppercase;
+  }
+
+  p, a {
+    margin-bottom: 0;
+    color: $off-white;
+    text-transform: uppercase;
+    margin-right: 40px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Search + Login */
+  form {
+    label {
+      color: $off-white;
+      text-transform: uppercase;
+      margin-right: 10px;
+      line-height: 24px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    input {
+      color: $off-white;
+      background-color: $near-black;
+      border: none;
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 0.75px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .sign-in {
+    text-decoration: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

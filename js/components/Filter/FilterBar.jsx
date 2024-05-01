@@ -1,4 +1,4 @@
-import "../../styles/app.scss";
+import "../../../styles/app.scss";
 import Filter from "./Filter.jsx";
 
 const FilterBar = ({ genres, decades, directors, updateFilms }) => {

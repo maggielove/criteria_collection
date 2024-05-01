@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { fetchHelper } from '../utilities/api';
+import { fetchHelper } from '../../utilities/api';
 
 // interface dropdownObject {
 //   id: number,

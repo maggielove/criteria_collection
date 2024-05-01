@@ -1,0 +1,27 @@
+@use '../base/colors' as *;
+
+.no-results {
+  color: $off-white;
+  margin: 64px auto 24px auto;
+  text-align: center;
+}
+
+.results-count {
+  color: $off-white;
+  max-width: 824px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+
+  .number {
+    font-weight: 500;
+  }
+}
+
+// Film Card wrapper
+.film-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 824px;
+  margin: 0 auto;
+}

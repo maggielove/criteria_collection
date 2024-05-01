@@ -1,0 +1,25 @@
+.filter-bar {
+  margin: 64px auto 12px auto;
+  width: 100%;
+  height: 100px;
+  padding: 12px;
+  align-items: center;
+
+  p {
+    font-family: "Montserrat", Arial, sans-serif;
+  }
+
+  .heading {
+    color: #8E8E8E;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    margin: 0 auto 32px;
+  }
+
+  .dropdown-container {
+    display: flex;
+    justify-content: center;
+  }
+}

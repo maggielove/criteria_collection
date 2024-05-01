@@ -1,0 +1,21 @@
+.my-list {
+  h2, .no-results {
+    width: 824px;
+    margin: 24px;
+  }
+
+  .no-results {
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .films-wrapper {
+    display: flex;
+    margin: 16px 24px 0;
+    overflow: scroll;
+
+    .film-card:not(:last-of-type) {
+      margin-right: 24px;
+    }
+  }
+}

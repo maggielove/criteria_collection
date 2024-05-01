@@ -1,0 +1,25 @@
+@use '../base/colors' as *;
+
+.filter {
+  width: 150px;
+  height: 75px;
+  border-radius: 4px;
+  text-align: center;
+
+  .label {
+    text-transform: capitalize;
+    color: $near-black;
+  }
+
+  select {
+    width: 150px;
+    height: 25px;
+    letter-spacing: 0.5px;
+    border-radius: 15px;
+    padding-left: 5px;
+  }
+
+  &:not(:last-of-type) {
+    margin-right: 32px;
+  }
+}
