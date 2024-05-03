@@ -1,0 +1,27 @@
+@use "../base/colors" as *;
+
+.react-slideshow-container {
+  img {
+    max-width: 100vw;
+  }
+
+  .default-nav:first-of-type {
+    margin-left: 20px;
+  }
+
+  .default-nav:last-of-type {
+    margin-right: 20px;
+  }
+
+  +ul.indicators {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    left: calc(50% - 68px);
+
+    .each-slideshow-indicator:before {
+      background: $white;
+    }
+  }
+}
