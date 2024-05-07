@@ -7,7 +7,6 @@ import AllFilms from './AllFilms.tsx';
 import FilterPage from './Filter/FilterPage.tsx';
 import { fetchHelper } from '../utilities/api';
 import useToken from '../hooks/useToken';
-import classNames from 'classnames';
 
 const updateMyList = (data) => {
   return fetch('/user', {

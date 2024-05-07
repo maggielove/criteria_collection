@@ -1,10 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import useToken from '../hooks/useToken';
+import classNames from 'classnames';
+// TODO separate out Mobile Navigation
 
 const Navigation = ({ updateFilms, onSignIn, token, username }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
+  const [mobileNavExpanded, setmobileNavExpanded] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
 
   const inputRef = useRef(null);
@@ -37,6 +40,14 @@ const Navigation = ({ updateFilms, onSignIn, token, username }) => {
     }
   }
 
+  const toggleFullNav = () => {
+    console.log(`toggled`);
+
+    setmobileNavExpanded(!mobileNavExpanded);
+  }
+
+  const fullMenuClasses = classNames('full-menu', {'expanded': mobileNavExpanded})
+
    return (
      <>
        <nav className="navigation desktop">
@@ -58,13 +69,25 @@ const Navigation = ({ updateFilms, onSignIn, token, username }) => {
        </nav>
 
        <nav className="navigation mobile">
-          <svg className="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-          viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu hamburger-icon">
-          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21"
-          y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-         <h1 className="logo">The Criteria Channel</h1>
+          <div className="top-banner">
+            <div onClick={toggleFullNav}><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+            viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"
+            strokeLinecap="round" strokeLinejoin="round" className="feather feather-menu hamburger-icon">
+            <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21"
+            y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
+           <h1 className="logo">The Criteria Channel</h1>
+         </div>
+         <div className={fullMenuClasses}>
+          <a href="/">Now Playing</a>
+          <a href="#allFilms">All Films</a>
+          <a href="">Search</a>
+          <div className="login">
+            {!token ? <p className="sign-in" onClick={onSignIn}>Sign in</p>
+              : <div><p>Hi, {token.username}</p></div>}
+          </div>
+         </div>
        </nav>
+
      </>
    );
 };

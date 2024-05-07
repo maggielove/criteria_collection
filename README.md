@@ -1,4 +1,4 @@
-![app screenshot](./images/criteria_collection_screenshot.png)
+![app screenshot](./assets/images/criteria_collection_screenshot.png)
 
 This is a web app based on the Criterion Channel. (It's not for profit. Its sole purpose is for me, a Criterion fan, to play with different tech and design.) It's built using Docker, Prisma, the Prisma Client, Express, Webpack, TypeScript, React, and SCSS.
 

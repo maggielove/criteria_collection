@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
+import path from 'path'
 
 const prisma = new PrismaClient()
 
@@ -120,8 +121,9 @@ const prisma = new PrismaClient()
   //   .finally(async () => await prisma.$disconnect())
 
 
-const app = express()
-app.use(express.json())
+const app = express();
+// app.use('../assets', express.static(path.join(__dirname, '../assets')));
+app.use(express.json());
 
 // REST API routes
 app.post('/login', async (req, res) => {
