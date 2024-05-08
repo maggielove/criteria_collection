@@ -13,7 +13,7 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "build": "rm -rf dist && webpack --mode development && npx prisma generate",
-    "serve": "webpack serve",
+    "start": "webpack serve",
     "dev": "nodemon app.js"
   },
   "author": "Maggie Love",

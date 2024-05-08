@@ -16,6 +16,33 @@
     color: $off-white;
     text-transform: uppercase;
   }
+
+  /* Search + Login */
+  form {
+    label {
+      color: $off-white;
+      text-transform: uppercase;
+      margin-right: 10px;
+      line-height: 24px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    input {
+      color: $off-white;
+      background-color: $near-black;
+      border: none;
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 0.75px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 }
 
 .navigation.mobile {
@@ -56,10 +83,7 @@
 
         a {
           text-decoration: none;
-
-          &:not(:last-of-type) {
-            padding-bottom: 20px;
-          }
+          padding-bottom: 20px;
         }
 
         .login {
@@ -70,7 +94,21 @@
             line-height: 28px;
           }
         }
+      }
+    }
 
+    /* search */
+    form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin-bottom: 10px;
+      }
+
+      input {
+        font-size: 24px;
+        line-height: 28px;
       }
     }
   }
@@ -114,33 +152,6 @@
       text-decoration: none;
     }
 
-    /* Search + Login */
-    form {
-      label {
-        color: $off-white;
-        text-transform: uppercase;
-        margin-right: 10px;
-        line-height: 24px;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      input {
-        color: $off-white;
-        background-color: $near-black;
-        border: none;
-        font-size: 18px;
-        line-height: 26px;
-        letter-spacing: 0.75px;
-
-        &:focus {
-          outline: none;
-        }
-      }
-    }
-
     .sign-in {
       text-decoration: underline;
 
@@ -148,6 +159,15 @@
         cursor: pointer;
       }
     }
+
+    /* search */
+    form {
+      label {
+        margin-right: 10px;
+        line-height: 24px;
+      }
+    }
+
   }
 
 }

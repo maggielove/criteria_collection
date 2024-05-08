@@ -119,7 +119,11 @@ const Navigation = ({ updateFilms, onSignIn, token }: NavigationProps) => {
          <div className={fullMenuClasses}>
           <a href="/">Now Playing</a>
           <a href="#allFilms">All Films</a>
-          <a href="">Search</a>
+          <form onKeyDown={handleKeyDown} onSubmit={handleSubmit}>
+            <label htmlFor="search" onClick={handleSearchClick}>Search</label>
+            <input ref={inputRef} type="text" id="search" value={searchTerm}
+              onChange={handleChange} />
+          </form>
           <div className="login">
             {!token ? <p className="sign-in" onClick={onSignIn}>Sign in</p>
               : <div><p>Hi, {token.username}</p></div>}

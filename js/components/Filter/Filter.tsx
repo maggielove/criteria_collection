@@ -2,29 +2,32 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchHelper } from '../../utilities/api';
 
-// interface itemProps {
-//   id: string,
-//   name: string
-// }
-//
-// interface FilterProps {
-//   label: string,
-//   dropdownValues: itemProps[],
-//   updateFilms: () => void
-// }
-//
-// interface eventProps {
-//   preventDefault: () => void,
-//   target: {
-//     value: string
-//   }
-// }
+interface Item {
+  id: string,
+  name: string,
+}
 
-const Filter = ({ label, dropdownValues, updateFilms }) => {
+interface FilterProps {
+  label: string,
+  dropdownValues: Item[],
+  updateFilms: () => void
+}
+
+interface Target {
+  value: string
+}
+
+interface Event {
+  key?: string,
+  preventDefault: () => void,
+  target: Target
+}
+
+const Filter = ({ label, dropdownValues, updateFilms }: FilterProps) => {
   const [category, setCategory] = useState('');
   let [searchParams, setSearchParams] = useSearchParams();
 
-  const handleChange = (e) => {
+  const handleChange = (e: Event) => {
     e.preventDefault();
     const categoryVal = e.target.value;
 
@@ -44,7 +47,7 @@ const Filter = ({ label, dropdownValues, updateFilms }) => {
     <div className='filter'>
       <p className='label'>{label}</p>
       <select value={category} onChange={handleChange}>
-        <option name={label} value={''}>all</option>
+        <option value={''}>all</option>
         {dropdownValues && dropdownValues.map((item) =>
           <option value={item.id} key={item.id}>{item.name}</option>
         )}

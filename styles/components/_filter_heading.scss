@@ -1,6 +1,10 @@
 @use '../base/colors' as *;
 
 .lower-modules-heading {
+  @media only screen and (max-device-width: 768px){
+    max-width: 80vw;
+  }
+
   width: 824px;
   display: flex;
   justify-content: space-between;
@@ -15,6 +19,10 @@
     color: $off-white;
     text-transform: uppercase;
     font-size: 16px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

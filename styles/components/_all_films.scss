@@ -7,6 +7,10 @@
 }
 
 .results-count {
+  @media only screen and (max-device-width: 768px){
+    max-width: 80vw;
+  }
+
   color: $off-white;
   max-width: 824px;
   margin: 0 auto;
@@ -19,6 +23,10 @@
 
 // Film Card wrapper
 .film-card-wrapper {
+  @media only screen and (max-device-width: 768px){
+    max-width: 80vw;
+  }
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
