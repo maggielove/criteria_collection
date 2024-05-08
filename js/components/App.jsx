@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Navigation from './Navigation.jsx';
+import Navigation from './Navigation.tsx';
 import Login from './Login.jsx';
-import Slides from './Slides.jsx';
+import Slides from './Slides.tsx';
 import MyList from './MyList.tsx';
 import AllFilms from './AllFilms.tsx';
 import FilterPage from './Filter/FilterPage.tsx';

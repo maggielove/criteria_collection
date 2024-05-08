@@ -1,11 +1,16 @@
-import FilterBar from './FilterBar.jsx';
+import FilterBar from './FilterBar';
 import classNames from 'classnames';
+
+interface CategoryObject {
+  id: string,
+  name: string
+}
 
 interface FilterPageProps {
   hidden: boolean,
-  directors: string[],
-  genres: string[],
-  decades: string[],
+  directors: CategoryObject[],
+  genres: CategoryObject[],
+  decades: CategoryObject[],
   updateFilms: () => any,
   toggleFilterPage: () => any
 }

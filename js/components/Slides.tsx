@@ -1,16 +1,11 @@
 import { Slide } from 'react-slideshow-image';
 
-const divStyle = {
-  // display: 'flex',
-  // padding: '20px',
-  // alignItems: 'center',
-  // justifyContent: 'center',
-  // backgroundSize: '100%',
-  // minHeight: '670px',
-  // height: '100%'
+interface Image {
+  url: string,
+  alt: string
 }
 
-const slideImages = [
+const slideImages: Image[] = [
   {
     url: 'https://vhx.imgix.net/criterionchannelchartersu/assets/bd5a405b-f24d-43a6-a834-471076bb30d1.jpg?auto=format%2Ccompress&fit=crop&h=720&q=75&w=1280',
     alt: `One Night: featuring Collateral, Assault on Precinct 13, After Hours,
@@ -40,7 +35,7 @@ const Slides = () => {
       <div className="slide-container">
         <Slide autoplay={false} indicators={true}>
          {slideImages.map((slideImage, index)=> (
-            <div key={index} style={{ ...divStyle }}>
+            <div key={index}>
               <img src={slideImage.url} alt={slideImage.alt} />
             </div>
           ))}

@@ -4,31 +4,72 @@ import useToken from '../hooks/useToken';
 import classNames from 'classnames';
 // TODO separate out Mobile Navigation
 
-const Navigation = ({ updateFilms, onSignIn, token, username }) => {
+interface Director {
+  id: number,
+  name: string
+}
+
+interface Decade {
+  id: number,
+  name: string
+}
+
+interface Film {
+  id: number,
+  image: string,
+  director: Director,
+  title: string,
+  decade: Decade
+}
+
+interface Token {
+  id: number,
+  username: string,
+  myList: Film[]
+}
+
+interface NavigationProps {
+  updateFilms: () => void,
+  onSignIn: () => void,
+  token: Token
+}
+
+interface Target {
+  value: string
+}
+
+interface Event {
+  key?: string,
+  preventDefault: () => void,
+  target: Target
+}
+
+const Navigation = ({ updateFilms, onSignIn, token }: NavigationProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [mobileNavExpanded, setmobileNavExpanded] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
 
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSearchClick = (e) => {
-    inputRef.current.focus();
+  const handleSearchClick = (e: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
+
+    inputRef.current?.focus();
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: Event) => {
     // updates text in form
     // TODO only do this after search term is >= 2 letters
     // maybe also debounce
     setSearchTerm(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // prevents form from clearing, URL from resetting
     e.preventDefault();
   }
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === 'Enter') {
       setSearchParams(searchParams => {
         searchParams.set("search", searchTerm.toString());
@@ -41,8 +82,6 @@ const Navigation = ({ updateFilms, onSignIn, token, username }) => {
   }
 
   const toggleFullNav = () => {
-    console.log(`toggled`);
-
     setmobileNavExpanded(!mobileNavExpanded);
   }
 
