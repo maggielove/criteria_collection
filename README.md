@@ -1,4 +1,6 @@
-![app screenshot](./assets/images/criteria_collection_screenshot.png)
+![desktop screenshot](./assets/images/cc_screenshot_desktop.png)
+
+<img src="./assets/images/cc_screenshot_mobile.png" alt="mobile screenshot" style="width: 375px" />
 
 This is a web app based on the Criterion Channel. (It's not for profit. Its sole purpose is for me, a Criterion fan, to play with different tech and design.) It's built using Docker, Prisma, the Prisma Client, Express, Webpack, TypeScript, React, and SCSS.
 
